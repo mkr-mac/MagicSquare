@@ -11,8 +11,9 @@ def magic(size, power):
 	while (a[numbox-1] < maxsize):
 		a[0] += 1
 		a = rollover(a, numbox, maxsize)
-		if (checkem(a, numbox)):
+		if (checkdubs(a, numbox)):
 			continue
+		addemup(a, size, power, numbox)
 		
 	return "END"
 
@@ -23,12 +24,28 @@ def rollover(a, numbox, maxsize):
 			a[l+1] += 1
 	return a
 
-def checkem(a, numbox):
+def checkdubs(a, numbox):
 	for j in range(0,numbox):
 		for k in range(0,numbox):
-			if (a[j] == a[k]):
+			if ((a[j] == a[k]) and not (j == k)):
 				return True
-				print "continue"
 
+def addemup(a, size, power, numbox):
+	f = [0] * ((size * 2) + 2)
+	across = 0
+	down = 0
+	diagup = 0
+	diagdown = 0
+	for m in range(0, size):
+		for n in range(0, size):
+			across += a[m+n] ** power
+			down += a[m+(n*size)] ** power
+		diagup += a[(m*size)+(size-m-1)]
+		diagdown += a[(m*size)+m]
+		f[m] = across
+		f[m+size] = down
 	
-print(magic(3, 2))
+	f[2*size] = diagup
+	f[(2*size)+1] = diagdown
+
+print(magic(3, 1))
