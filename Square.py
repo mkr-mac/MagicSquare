@@ -25,12 +25,13 @@ def rollover(a, numbox, maxsize):
 			a[l+1] += 1
 	return a
 def checkdubs(a):
-      try:
-         iterator = iter(a)
-         first = next(iterator)
-         return all(first == rest for rest in iterator)
-      except StopIteration:
-         return True
+	seen = set()
+	for x in a:
+		if x in seen:
+			return True
+		seen.add(x)
+	return False
+	
 
 def addemup(a, f, size, power, numbox):	
 	f = [0] * ((size * 2) + 2)
@@ -38,7 +39,7 @@ def addemup(a, f, size, power, numbox):
 		for n in range(0, size):
 			f[m] += a[m+n] ** power
 			f[m+size] += a[m+(n*size)] ** power
-		f[2*size] += a[(m*size)+(size+-m+-1)] ** power
+		f[2*size] += a[((m+1)*size)-(m+1)] ** power
 		f[(2*size)+1] += a[(m*size)+m] ** power
 	
 	if(allsame(f)):
@@ -47,6 +48,11 @@ def addemup(a, f, size, power, numbox):
 			print(a[o])
 
 def allsame(f):
-	return all(x == f[0] for x in f)
+	seeni = set()
+	seeni.add(f[0])
+	for y in f:
+		if y not in seeni:
+			return False
+	return True
 
 print(magic(3, 1))
