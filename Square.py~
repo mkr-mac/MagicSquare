@@ -2,7 +2,7 @@ def magic(size, power):
 	numbox = initval = size ** 2
 	a = [1] * numbox
 	f = [0] * ((size * 2) + 2)
-	maxsize = 10
+	maxsize = (size ** 2)
 	for i in range(0,numbox):
 		a[i] = initval
 		initval -= 1
@@ -32,24 +32,19 @@ def checkdubs(a):
       except StopIteration:
          return True
 
-def addemup(a, f, size, power, numbox):
-	across = 0
-	down = 0
-	diagup = 0
-	diagdown = 0
+def addemup(a, f, size, power, numbox):	
+	f = [0] * ((size * 2) + 2)
 	for m in range(0, size):
 		for n in range(0, size):
-			across += a[m+n] ** power
-			down += a[m+(n*size)] ** power
-		diagup += a[(m*size)+(size+-m+-1)] ** power
-		diagdown += a[(m*size)+m] ** power
-		f[m] = across
-		f[m+size] = down
+			f[m] += a[m+n] ** power
+			f[m+size] += a[m+(n*size)] ** power
+		f[2*size] += a[(m*size)+(size+-m+-1)] ** power
+		f[(2*size)+1] += a[(m*size)+m] ** power
 	
-	f[2*size] = diagup
-	f[(2*size)+1] = diagdown
 	if(allsame(f)):
 		print("SOLUTION!!!")
+		for o in range(0, size**2):
+			print(a[o])
 
 def allsame(f):
 	return all(x == f[0] for x in f)
