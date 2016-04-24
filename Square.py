@@ -24,6 +24,7 @@ def rollover(a, numbox, maxsize):
 			a[l] = 1
 			a[l+1] += 1
 	return a
+
 def checkdubs(a):
 	seen = set()
 	for x in a:
@@ -31,13 +32,12 @@ def checkdubs(a):
 			return True
 		seen.add(x)
 	return False
-	
 
 def addemup(a, f, size, power, numbox):	
 	f = [0] * ((size * 2) + 2)
 	for m in range(0, size):
 		for n in range(0, size):
-			f[m] += a[m+n] ** power
+			f[m] += a[(size*m)+n] ** power
 			f[m+size] += a[m+(n*size)] ** power
 		f[2*size] += a[((m+1)*size)-(m+1)] ** power
 		f[(2*size)+1] += a[(m*size)+m] ** power

@@ -53,7 +53,6 @@ def allsame(f):
 	for y in f:
 		if y not in seeni:
 			return False
-		seeni.add(y)
 	return True
 
 print(magic(3, 1))
