@@ -1,8 +1,10 @@
+import sys
+
 def magic(size, power):
 	numbox = initval = size ** 2
 	a = [1] * numbox
 	f = [0] * ((size * 2) + 2)
-	maxsize = (size ** 2)
+	maxsize = (size ** 2)**2
 	print("Searching...")
 	for i in range(0,numbox):
 		a[i] = initval
@@ -55,4 +57,4 @@ def allsame(f):
 			return False
 	return True
 
-print(magic(3, 1))
+magic(int(sys.argv[1]), int(sys.argv[2]))
