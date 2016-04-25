@@ -4,7 +4,7 @@ def magic(size, power):
 	numbox = initval = size ** 2
 	a = [1] * numbox
 	f = [0] * ((size * 2) + 2)
-	maxsize = (size ** 2)**2
+	maxsize = (size ** 2)
 	print("Searching...")
 	for i in range(0,numbox):
 		a[i] = initval

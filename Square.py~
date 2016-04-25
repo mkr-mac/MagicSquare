@@ -57,4 +57,4 @@ def allsame(f):
 			return False
 	return True
 
-magic(sys.argv[1], int(sys.argv[2]))
+magic(int(sys.argv[1]), int(sys.argv[2]))
