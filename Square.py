@@ -2,7 +2,7 @@ import sys
 
 def magic(size, power):
 	numbox = initval = size ** 2
-	a = [1] * numbox
+	a = [1] * (numbox + 1)
 	f = [0] * ((size * 2) + 2)
 	maxsize = (size ** 2)
 	print("Searching...")
@@ -14,7 +14,7 @@ def magic(size, power):
 	while (a[numbox-1] < maxsize):
 		a[0] += 1
 		a = rollover(a, numbox, maxsize)
-		if (checkdubs(a)):
+		if (checkdubs(a, numbox)):
 			continue
 		addemup(a, f, size, power, numbox)
 		
@@ -27,15 +27,19 @@ def rollover(a, numbox, maxsize):
 			a[l+1] += 1
 	return a
 
-def checkdubs(a):
-	seen = set()
-	for x in a:
-		if x in seen:
+def checkdubs(a, numbox):
+	seen = []
+	for x in range(0,numbox):
+		if a[x] in seen:
+			a[0] -= 1
+			a[seen.index(a[x])] += 1
 			return True
-		seen.add(x)
+		seen.append(a[x])
 	return False
 
 def addemup(a, f, size, power, numbox):	
+	
+	#print a[8]
 	f = [0] * ((size * 2) + 2)
 	for m in range(0, size):
 		for n in range(0, size):
@@ -57,4 +61,4 @@ def allsame(f):
 			return False
 	return True
 
-magic(int(sys.argv[1]), int(sys.argv[2]))
+print(magic(int(sys.argv[1]), int(sys.argv[2])))
