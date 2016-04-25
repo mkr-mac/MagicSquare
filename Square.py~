@@ -4,6 +4,7 @@ def magic(size, power):
 	numbox = initval = size ** 2
 	a = [0] * (numbox + 1)
 	f = [0] * ((size * 2) + 2)
+	seen = []
 	maxsize = (size ** 2)**power
 	print("Searching...")
 	for i in range(0,numbox):
@@ -11,22 +12,22 @@ def magic(size, power):
 		initval -= 1
 	
 	a[0] -= 1
-	while (a[numbox-1] < maxsize):
+	while (a[numbox-1] <= maxsize):
 		a[0] += 1
 		rollover(a, numbox, maxsize)
-		if (checkdubs(a, numbox)):
+		if (checkdubs(a, seen, numbox)):
 			continue
 		addemup(a, f, size, power, numbox)
 		
 	return "END"
 
 def rollover(a, numbox, maxsize):
-	for l in range(0,numbox):
+	for l in range(0,numbox-1):
 		if (a[l] > maxsize):
 			a[l] = 1
 			a[l+1] += 1
 
-def checkdubs(a, numbox):
+def checkdubs(a, seen, numbox):
 	seen[:] = []
 	for x in range(0,numbox):
 		if a[x] in seen:
@@ -51,10 +52,8 @@ def addemup(a, f, size, power, numbox):
 			print(a[o])
 
 def allsame(f):
-	seeni = set()
-	seeni.add(f[0])
-	for y in f:
-		if y not in seeni:
+	for y in range(1, 8):
+		if (f[y] != f[0]):
 			return False
 	return True
 
