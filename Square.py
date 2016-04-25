@@ -2,9 +2,9 @@ import sys
 
 def magic(size, power):
 	numbox = initval = size ** 2
-	a = [1] * (numbox + 1)
+	a = [0] * (numbox + 1)
 	f = [0] * ((size * 2) + 2)
-	maxsize = (size ** 2)
+	maxsize = (size ** 2)**power
 	print("Searching...")
 	for i in range(0,numbox):
 		a[i] = initval
@@ -36,10 +36,8 @@ def checkdubs(a, numbox):
 		seen.append(a[x])
 	return False
 
-def addemup(a, f, size, power, numbox):	
-	
-	#print a[8]
-	f = [0] * ((size * 2) + 2)
+def addemup(a, f, size, power, numbox):
+	f[:] = [0] * ((size * 2) + 2)
 	for m in range(0, size):
 		for n in range(0, size):
 			f[m] += a[(size*m)+n] ** power
