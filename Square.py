@@ -13,7 +13,7 @@ def magic(size, power):
 	a[0] -= 1
 	while (a[numbox-1] < maxsize):
 		a[0] += 1
-		a = rollover(a, numbox, maxsize)
+		rollover(a, numbox, maxsize)
 		if (checkdubs(a, numbox)):
 			continue
 		addemup(a, f, size, power, numbox)
@@ -25,7 +25,6 @@ def rollover(a, numbox, maxsize):
 		if (a[l] > maxsize):
 			a[l] = 1
 			a[l+1] += 1
-	return a
 
 def checkdubs(a, numbox):
 	seen = []

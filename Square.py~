@@ -11,7 +11,7 @@ def magic(size, power):
 		initval -= 1
 	
 	a[0] -= 1
-	while (a[numbox-1] <= maxsize):
+	while (a[numbox-1] < maxsize):
 		a[0] += 1
 		a = rollover(a, numbox, maxsize)
 		if (checkdubs(a, numbox)):
