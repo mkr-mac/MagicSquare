@@ -1,10 +1,10 @@
 import sys
+from array import array
 
 def magic(size, power):
 	numbox = initval = size ** 2
 	a = [0] * (numbox + 1)
 	f = [0] * ((size * 2) + 2)
-	seen = []
 	maxsize = (size ** 2)**power
 	print("Searching...")
 	for i in range(0,numbox):
@@ -15,7 +15,7 @@ def magic(size, power):
 	while (a[numbox-1] <= maxsize):
 		a[0] += 1
 		rollover(a, numbox, maxsize)
-		if (checkdubs(a, seen, numbox)):
+		if (checkdubs(a, numbox)):
 			continue
 		addemup(a, f, size, power, numbox)
 		
@@ -26,14 +26,16 @@ def rollover(a, numbox, maxsize):
 			a[l] = 1
 			a[l+1] += 1
 
-def checkdubs(a, seen, numbox):
-	seen[:] = []
+def checkdubs(a, numbox):
+	seen = []
+	indx = seen.index
+	appnd = seen.append
 	for x in range(0,numbox):
 		if a[x] in seen:
 			a[0] -= 1
-			a[seen.index(a[x])] += 1
+			a[indx(a[x])] += 1
 			return True
-		seen.append(a[x])
+		appnd(a[x])
 	return False
 
 def addemup(a, f, size, power, numbox):

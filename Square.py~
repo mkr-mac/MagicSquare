@@ -1,4 +1,5 @@
 import sys
+from array import array
 
 def magic(size, power):
 	numbox = initval = size ** 2
@@ -20,7 +21,6 @@ def magic(size, power):
 		addemup(a, f, size, power, numbox)
 		
 	return "END"
-
 def rollover(a, numbox, maxsize):
 	for l in range(0,numbox-1):
 		if (a[l] > maxsize):
@@ -29,12 +29,14 @@ def rollover(a, numbox, maxsize):
 
 def checkdubs(a, seen, numbox):
 	seen[:] = []
+	indx = seen.index
+	appnd = seen.append
 	for x in range(0,numbox):
 		if a[x] in seen:
 			a[0] -= 1
-			a[seen.index(a[x])] += 1
+			a[indx(a[x])] += 1
 			return True
-		seen.append(a[x])
+		appnd(a[x])
 	return False
 
 def addemup(a, f, size, power, numbox):
