@@ -1,14 +1,13 @@
 import sys
+import gc
 from array import array
 
 def magic(size, power):
 	numbox = initval = size ** 2
 	a = [0] * (numbox + 1)
-	f = [0] * ((size * 2) + 2)
-	seen = []
 	maxsize = (size ** 2)**power
 	print("Searching...")
-	for i in range(0,numbox):
+	for i in xrange(numbox):
 		a[i] = initval
 		initval -= 1
 	
@@ -16,33 +15,33 @@ def magic(size, power):
 	while (a[numbox-1] <= maxsize):
 		a[0] += 1
 		rollover(a, numbox, maxsize)
-		if (checkdubs(a, seen, numbox)):
+		if (checkdubs(a, numbox)):
 			continue
-		addemup(a, f, size, power, numbox)
+		addemup(a, size, power, numbox)
 		
 	return "END"
 def rollover(a, numbox, maxsize):
-	for l in range(0,numbox-1):
+	for l in xrange(numbox-1):
 		if (a[l] > maxsize):
 			a[l] = 1
 			a[l+1] += 1
 
-def checkdubs(a, seen, numbox):
-	seen[:] = []
+def checkdubs(a, numbox):
+	seen = []
 	indx = seen.index
 	appnd = seen.append
-	for x in range(0,numbox):
-		if a[x] in seen:
+	for x in a:
+		if x in seen:
 			a[0] -= 1
-			a[indx(a[x])] += 1
+			a[indx(x)] += 1
 			return True
-		appnd(a[x])
+		appnd(x)
 	return False
 
-def addemup(a, f, size, power, numbox):
-	f[:] = [0] * ((size * 2) + 2)
-	for m in range(0, size):
-		for n in range(0, size):
+def addemup(a, size, power, numbox):
+	f = [0] * ((size * 2) + 2)
+	for m in xrange(size):
+		for n in xrange(size):
 			f[m] += a[(size*m)+n] ** power
 			f[m+size] += a[m+(n*size)] ** power
 		f[2*size] += a[((m+1)*size)-(m+1)] ** power
@@ -50,11 +49,11 @@ def addemup(a, f, size, power, numbox):
 	
 	if(allsame(f)):
 		print("SOLUTION!!!")
-		for o in range(0, size**2):
+		for o in range(size**2):
 			print(a[o])
 
 def allsame(f):
-	for y in range(1, 8):
+	for y in xrange(1, 8):
 		if (f[y] != f[0]):
 			return False
 	return True
