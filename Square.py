@@ -18,7 +18,11 @@ def magic(size, power):
 	#Main loop
 	while (a[numbox-1] < maxsize):
 		a[0] += 1
-		rollover(a, numbox-1, maxsize)
+		for l in xrange(numbox-1):
+			if (a[l] > maxsize):
+				a[l] = 1
+				a[l+1] += 1
+
 		#Duplicates restart the loop
 		if (checkdubs(a)):
 			continue
@@ -26,13 +30,6 @@ def magic(size, power):
 		addemup(a, size, power)
 		
 	return "END"
-
-def rollover(a, numbox_minus, maxsize):
-	#Checking all the numbers to see if they are still in range
-	for l in xrange(numbox_minus):
-		if (a[l] > maxsize):
-			a[l] = 1
-			a[l+1] += 1
 
 def checkdubs(a):
 	seen = []
