@@ -19,8 +19,8 @@ def magic(size, power):
 		
 	return "END"
 
-def rollover(a, numbox, maxsize):
-	for l in xrange(numbox):
+def rollover(a, numbox_minus, maxsize):
+	for l in xrange(numbox_minus):
 		if (a[l] > maxsize):
 			a[l] = 1
 			a[l+1] += 1
@@ -28,7 +28,6 @@ def rollover(a, numbox, maxsize):
 def checkdubs(a):
 	seen = []
 	indx = seen.index
-	appnd = seen.append
 	for x in a:
 		if x in seen:
 			a[0] -= 1

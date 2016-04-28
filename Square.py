@@ -28,7 +28,6 @@ def rollover(a, numbox_minus, maxsize):
 def checkdubs(a):
 	seen = []
 	indx = seen.index
-	appnd = seen.append
 	for x in a:
 		if x in seen:
 			a[0] -= 1
@@ -52,8 +51,9 @@ def addemup(a, size, power):
 			print(o)
 
 def allsame(f):
+	allf = f[0]
 	for y in f:
-		if (y != f[0]):
+		if (y != allf):
 			return False
 	return True
 
