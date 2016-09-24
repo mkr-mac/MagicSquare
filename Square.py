@@ -2,23 +2,20 @@ import sys
 from itertools import permutations
 
 def magic(size, power):
+        """Today we find some magic squares! Quickly!"""
 	#Get the number of boxes
-	#and a value for giving a starting value to the boxes
-	numbox = initval = size ** 2
-	#The main list of the boxes
-	a = [0] * (numbox)
+	numbox = size ** 2
 	#Sets initial values for the list
-	a = [x for x in xrange(1, 1000)]
+	a = [x for x in xrange(1, numbox+1)]
+	fsize = (2*size)+2
 	#Main loop
 	print("Starting...")
-        preq = permutations(a,9)
+        preq = permutations(a,numbox)
         print("Permutations Complete!")
-	#q = set(preq)
-	#print("Sets Ready!")
 	print("Searching...")
 	for i in preq:
                 #addemup(item, size, power)
-                f = [0] * ((size * 2) + 2)
+                f = [0] * fsize
                 #Do some fancy list stuff
                 for m in xrange(size):
                         for n in xrange(size):
@@ -27,20 +24,17 @@ def magic(size, power):
                         f[2*size] += i[((m+1)*size)-(m+1)] ** power
                         f[(2*size)+1] += i[(m*size)+m] ** power
                 
-                if(allsame(f)):
+                allf = f[0]
+                #Are all our additions the same?
+                for y in f:
+                        if (y != allf):
+                                break
+                else:
                         #We did it!
                         print("SOLUTION!!!")
                         for o in i:
                                 print(o)
 
 	return "END"
-
-def allsame(f):
-	allf = f[0]
-	#Are all our additions the same?
-	for y in f:
-		if (y != allf):
-			return False
-	return True
 
 print(magic(int(sys.argv[1]), int(sys.argv[2])))
