@@ -14,7 +14,6 @@ def magic(size, power):
         preq = permutations(a,numbox)
         print("Permutations Complete!")
 	print("Searching...")
-	print(a[::4])
 	for i in preq:
                 #addemup(item, size, power)
                 f = [0] * fsize
