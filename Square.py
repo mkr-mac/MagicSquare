@@ -23,7 +23,7 @@ def magic(size, power):
 	print "Permutations Complete!"
 	print "Searching..."
 	for i in q:
-		if halfbox/2 < i[0]: break
+		if halfbox < i[0]: break
 		f = forig
 		#Do some fancy list stuff
 		for n in xrange(size):
