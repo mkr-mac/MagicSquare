@@ -28,10 +28,9 @@ def magic(size, power):
 			f[size+n] = i[n::size]
 		f[sizedu] = i[::sizepp]
 		f[sizedo] = i[sizemm:numboxmm:sizemm]
-		f = map(sum, f)
 		allf = f[0]
 		#Are all our additions the same?
-		for y in f:
+		for y in map(sum, f):
 			if (y != allf):
 				break
 		else:
