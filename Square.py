@@ -2,38 +2,42 @@ import sys
 from itertools import permutations
 
 def magic(size, power):
-        """Today we find some magic squares! Quickly!"""
+	"""Today we find some magic squares! Quickly!"""
 	#Get the number of boxes
 	numbox = size ** 2
+	sizepp = size + 1
+	sizemm = size - 1
+	sizedu = size * 2
+	sizedo = sizedu + 1
+	numboxpp = numbox + 1
+	numboxmm = numbox - 1
 	#Sets initial values for the list
-	a = range(1,numbox+1)
-	fsize = (2*size)+2
+	a = range(1,numboxpp)
+	forig = [0] * (sizedu+2)
 	#Main loop
-	print("Starting...")
+	print "Starting..."
 	#Magical permutation function
-        preq = permutations(a,numbox)
-        print("Permutations Complete!")
-	print("Searching...")
-	for i in preq:
-                #addemup(item, size, power)
-                f = [0] * fsize
-                #Do some fancy list stuff
-                for n in xrange(size):
-                        f[n] = sum(i[size*(n):size*(n+1)])
-                        f[size+n] = sum(i[n::size])
-                f[2*size] = sum(i[::size+1])
-                f[2*size+1] = sum(i[size-1:numbox-1:size-1])
-                
-                allf = f[0]
-                #Are all our additions the same?
-                for y in f:
-                        if (y != allf):
-                                break
-                else:
-                        #We did it!
-                        print("SOLUTION!!!")
-                        for o in i:
-                                print(o)
+	q = permutations(a,numbox)
+	print "Permutations Complete!"
+	print "Searching..."
+	for i in q:
+		f = forig
+		#Do some fancy list stuff
+		for n in xrange(size):
+			f[n] = sum(i[size*n:size*(n+1)])
+			f[size+n] = sum(i[n::size])
+		f[sizedu] = sum(i[::sizepp])
+		f[sizedo] = sum(i[sizemm:numboxmm:sizemm])
+		
+		allf = f[0]
+		#Are all our additions the same?
+		for y in f:
+			if (y != allf):
+				break
+		else:
+			#We did it!
+			print "SOLUTION!"
+			print i
 
 	return "END"
 
