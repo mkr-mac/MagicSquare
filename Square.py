@@ -1,5 +1,5 @@
 import sys
-from itertools import permutations
+from itertools import permutations, imap
 
 def magic(size, power):
 	"""Today we find some magic squares! Quickly!"""
@@ -28,9 +28,9 @@ def magic(size, power):
 			f[size+n] = i[n::size]
 		f[sizedu] = i[::sizepp]
 		f[sizedo] = i[sizemm:numboxmm:sizemm]
-		allf = f[0]
 		#Are all our additions the same?
-		for y in map(sum, f):
+		allf = sum(f[0])
+		for y in imap(sum, f):
 			if (y != allf):
 				break
 		else:
