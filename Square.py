@@ -11,6 +11,7 @@ def magic(size, power):
 	sizedo = sizedu + 1
 	numboxpp = numbox + 1
 	numboxmm = numbox - 1
+	fsize  = sizedu + 2
 	#Sets initial values for the list
 	a = range(1,numboxpp)
 	forig = [0] * (sizedu+2)
@@ -30,7 +31,7 @@ def magic(size, power):
 		f[sizedu] = i[::sizepp]
 		f[sizedo] = i[sizemm:numboxmm:sizemm]
 		#Are all our additions the same?
-		allf = sum(f[0])
+		allf = sum(f[sizedo])
 		for y in imap(sum, f):
 			if (y != allf):
 				break
