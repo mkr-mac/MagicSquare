@@ -1,8 +1,8 @@
 import sys
 from itertools import permutations, imap
-
+#@profile
 def magic(size, power):
-	"""Today we find some magic squares! Quickly!"""
+	"""Today we find some magic squares! Quickly! At least for size 3 power 1!"""
 	#Get the number of boxes
 	numbox = size ** 2
 	sizepp = size + 1
@@ -16,17 +16,16 @@ def magic(size, power):
 	#Sets initial values for the list
 	a = range(1,numboxpp)
 	f = [0] * (sizedu+2)
-	print "Starting..."
 	#Magical permutation function
 	q = permutations(a,numbox)
-	print "Permutations Complete!"
+	zz = xrange(size)
 	print "Searching..."
 	"""~~~Main Loop~~~"""
 	for i in q:
 		#Half of the numbers is enough
 		if halfbox < i[0]: break
 		#Do some fancy list stuff
-		for n in xrange(size):
+		for n in zz:
 			f[n] = i[size*n:size*(n+1)]
 			f[size+n] = i[n::size]
 		f[sizedu] = i[::sizepp]
