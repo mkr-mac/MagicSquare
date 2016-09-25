@@ -24,11 +24,11 @@ def magic(size, power):
 		f = forig
 		#Do some fancy list stuff
 		for n in xrange(size):
-			f[n] = sum(i[size*n:size*(n+1)])
-			f[size+n] = sum(i[n::size])
-		f[sizedu] = sum(i[::sizepp])
-		f[sizedo] = sum(i[sizemm:numboxmm:sizemm])
-		
+			f[n] = i[size*n:size*(n+1)]
+			f[size+n] = i[n::size]
+		f[sizedu] = i[::sizepp]
+		f[sizedo] = i[sizemm:numboxmm:sizemm]
+		f = map(sum, f)
 		allf = f[0]
 		#Are all our additions the same?
 		for y in f:
