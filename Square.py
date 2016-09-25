@@ -38,6 +38,8 @@ def magic(size, power):
 			#We did it!
 			print "SOLUTION!"
 			print i
+			print "SOLUTION!"
+			print i[::-1]
 
 	return "END"
 
