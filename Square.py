@@ -12,6 +12,7 @@ def magic(size, power):
 	numboxpp = numbox + 1
 	numboxmm = numbox - 1
 	fsize  = sizedu + 2
+	halfbox = numbox/2
 	#Sets initial values for the list
 	a = range(1,numboxpp)
 	forig = [0] * (sizedu+2)
@@ -22,7 +23,7 @@ def magic(size, power):
 	print "Permutations Complete!"
 	print "Searching..."
 	for i in q:
-		if numbox/2 < i[0]: break
+		if halfbox/2 < i[0]: break
 		f = forig
 		#Do some fancy list stuff
 		for n in xrange(size):
