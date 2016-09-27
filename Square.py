@@ -25,6 +25,7 @@ def magic(size, power):
 		#Half of the numbers is enough
 		if halfbox < i[0]: break
 		#Do some fancy list stuff
+		i = [t**power for t in i]
 		for n in zz:
 			f[n] = i[size*n:size*(n+1)]
 			f[size+n] = i[n::size]
