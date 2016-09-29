@@ -32,7 +32,11 @@ def magic(size, power):
 		f[sizedu] = i[::sizepp]
 		f[sizedo] = i[sizemm:numboxmm:sizemm]
 		#Are all our additions the same?
-		if f[1:] == f[:-1]:
+		lastf = sum(f[sizedo])
+		for y in imap(sum, f):
+			if (y != lastf):
+				break
+		else:
 			#We did it!
 			print "SOLUTION!"
 			print i
