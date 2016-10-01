@@ -43,6 +43,6 @@ def magic(size, power):
 			print "SOLUTION!"
 			print i[::-1]
 
-	return "END"
+	print "END"
 
-print(magic(int(sys.argv[1]), int(sys.argv[2])))
+magic(int(sys.argv[1]), int(sys.argv[2]))
