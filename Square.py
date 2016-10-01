@@ -32,8 +32,8 @@ def magic(size, power):
 		f[sizedo] = i[sizemm:numboxmm:sizemm]
 		#Are all our additions the same?
 		lastf = sum(f[sizedo])
-		for y in imap(sum, f):
-			if (y != lastf):
+		for y in f:
+			if sum(y) != lastf:
 				break
 		else:
 			#We did it!
