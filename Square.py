@@ -14,7 +14,7 @@ def magic(size, power):
 	fsize  = sizedu + 2
 	halfbox = numbox/2
 	#Sets initial values for the list
-	a = range(1,numboxpp)
+	a = [x**power for x in range(1,numboxpp)]
 	f = [0] * (sizedu+2)
 	#Magical permutation function
 	q = permutations(a,numbox)
@@ -25,7 +25,6 @@ def magic(size, power):
 		#Half of the numbers is enough
 		if halfbox < i[0]: break
 		#Do some fancy list stuff
-		i = [t**power for t in i]
 		for n in zz:
 			f[n] = i[size*n:size*(n+1)]
 			f[size+n] = i[n::size]
