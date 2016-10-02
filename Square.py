@@ -8,7 +8,7 @@ def magic(size, power):
 	sizepp = size + 1
 	sizemm = size - 1
 	sizedu = size * 2
-	sizedo = sizedu + 1
+	sizedupp = sizedu + 1
 	numboxpp = numbox + 1
 	numboxmm = numbox - 1
 	fsize  = sizedu + 2
@@ -29,9 +29,9 @@ def magic(size, power):
 			f[n] = i[size*n:size*(n+1)]
 			f[size+n] = i[n::size]
 		f[sizedu] = i[::sizepp]
-		f[sizedo] = i[sizemm:numboxmm:sizemm]
+		f[sizedupp] = i[sizemm:numboxmm:sizemm]
 		#Are all our additions the same?
-		lastf = sum(f[sizedo])
+		lastf = sum(f[sizedupp])
 		for y in f:
 			if sum(y) != lastf:
 				break
