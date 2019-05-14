@@ -1,5 +1,5 @@
 import sys
-from itertools import permutations, imap
+from itertools import permutations
 #@profile
 def magic(size, power):
 	"""Today we find some magic squares! Quickly! At least for size 3 power 1!"""
@@ -18,8 +18,8 @@ def magic(size, power):
 	f = [0] * (sizedu+2)
 	#Magical permutation function
 	q = permutations(a,numbox)
-	zz = xrange(size)
-	print "Searching..."
+	zz = range(size)
+	print("Searching...")
 	"""~~~Main Loop~~~"""
 	for i in q:
 		#Half of the numbers is enough
@@ -37,12 +37,12 @@ def magic(size, power):
 				break
 		else:
 			#We did it!
-			print "SOLUTION!"
-			print i
+			print("SOLUTION!")
+			print(i)
 			#The reverse is also true
-			print "SOLUTION!"
-			print i[::-1]
+			print("SOLUTION!")
+			print(i[::-1])
 
-	print "END"
+	print("END")
 
 magic(int(sys.argv[1]), int(sys.argv[2]))
